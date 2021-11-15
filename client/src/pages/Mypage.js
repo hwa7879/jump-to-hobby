@@ -1,7 +1,26 @@
-import React from "react";
+// import React from "react";
+// import styled from "styled-components";
+// import axios from "axios";
 
-const Mypage = () => {
-  return <div>마이페이지 입니다.</div>;
-};
+// axios.defaults.withCredentials = true;
 
-export default Mypage;
+// function Mypage(props) {
+//   const { userinfo, handleLogout } = props;
+
+//   return userinfo ? (
+//     <div>
+//       <h1>Mypage</h1>
+//       <div className="username">{userinfo.username}</div>
+//       <div className="email">{userinfo.email}</div>
+//       <div className="mobile">{userinfo.mobile}</div>
+
+//       <button className="btn btn-logout" onClick={handleLogout}>
+//         logout
+//       </button>
+//     </div>
+//   ) : (
+//     ""
+//   );
+// }
+
+// export default Mypage;
