@@ -1,6 +1,10 @@
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import React, { useState } from "react";
-import styled from "styled-components";
+import Imageboard from "./pages/Imageboard";
 import Mainpage from "./pages/Mainpage";
+import Mypage from "./pages/Mypage";
+import Uploadboard from "./pages/Uploadboard";
+import styled from "styled-components";
 
 const button_style = {
   position: "absolute",
@@ -24,6 +28,22 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Mainpage />
+          </Route>
+          <Route path="/mypage">
+            <Mypage />
+          </Route>
+          <Route path="/images">
+            <Imageboard />
+          </Route>
+          <Route path="/upload">
+            <Uploadboard />
+          </Route>
+        </Switch>
+      </BrowserRouter>
       <Logo src="/images/logo.png" />
       <div style={button_style} onClick={() => console.log("clicked")}>
         <button onClick={() => setIsOpen(true)}>Signup</button>
