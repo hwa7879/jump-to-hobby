@@ -23,6 +23,8 @@ app.post("/login", controllers.login);
 app.post("/logout", controllers.logout);
 app.post("/signup", controllers.signup);
 app.post("/userInfo", controllers.userInfo);
+app.post("/delete", controllers.delete);
+app.post("/list", controllers.list);
 
 const server = app.listen(port, () => {
   console.log(`server listening on ${port}`);
