@@ -82,7 +82,7 @@ const Uploadboard = () => {
       return;
     }
 
-    // 이미지 업로드 POST
+    // 이미지 업로드 POST 입니다~
     axios
       .post(
         "http://jump-to-hobby/images/upload",
