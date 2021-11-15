@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
@@ -25,7 +25,7 @@ app.post("/signup", controllers.signup);
 app.post("/userInfo", controllers.userInfo);
 
 const server = app.listen(port, () => {
-  console.log(`http server listening on ${port}`);
+  console.log(`server listening on ${port}`);
 });
 
 module.exports = server;
