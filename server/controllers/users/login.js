@@ -1,5 +1,8 @@
 const { users } = require("../../models");
-const { generateAccessToken, sendAccessToken } = require("../tokenFunctions");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+} = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;

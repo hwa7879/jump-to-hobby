@@ -1,14 +1,17 @@
-require(dotenv).config();
+require("dotenv").config();
 const { sign, verify } = require("jsonwebtoken");
 const ACCESS_SECRET = process.env.ACCESS_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;
+
 module.exports = {
   generateAccessToken: (data) => {
     return sign(data, process.env.ACCESS_SECRET, { expiresIn: "60s" });
   },
+
   generateRefreshToken: (data) => {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: "5d" });
   },
+
   sendRefreshToken: (res, refresh_token) => {
     res.cookie("refresh_token", refresh_token, {
       httpOnly: true,
@@ -31,7 +34,8 @@ module.exports = {
       return null;
     }
   },
-  verifyrefreshToken: (req) => {
+
+  verifyRefreshToken: (req) => {
     const refreshToken = req.cookies.refreshToken;
     try {
       return verify(refreshToken, process.env.REFRESH_SECRET);
