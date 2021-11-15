@@ -9,5 +9,7 @@ module.exports = {
     imageInfo: require("./images/imageInfo"),
     imageUpload: require("./images/imageUpload"),
     imageEdit: require("./images/imageEdit"),
+    imageDelete: require("./images/imageDelete"),
+    imageList: require("./images/imageList"),
   },
 };
