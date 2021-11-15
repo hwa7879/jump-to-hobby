@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-// router;
+// router
 app.post("/login", controllers.login);
 app.post("/logout", controllers.logout);
 app.post("/signup", controllers.signup);
