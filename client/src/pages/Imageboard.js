@@ -210,7 +210,7 @@ const Imageboard = () => {
 
   // 이미지 모두 불러오기 GET
   useEffect(() => {
-    axios.post("http://jump-to-hobby/images/info").then((res) => {
+    axios.get("http://jump-to-hobby/images/info").then((res) => {
       console.log(res);
       // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯.
     });
