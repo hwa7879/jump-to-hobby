@@ -57,7 +57,7 @@ export const Button = styled.div`
 `;
 
 const Uploadboard = () => {
-  const [imgUrl, setImgUrl] = useState(""); // img src 값
+  const [imgUrl, setImgUrl] = useState(""); // img src 값.
   const [inputContent, setInputContent] = useState("");
   const history = useHistory();
 
