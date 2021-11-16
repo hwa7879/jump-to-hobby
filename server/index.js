@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const controllers = require("./controllers");
 
 const app = express();
-const port = 80;
+const PORT = process.env.PORT || 80;
 
 app.use(cookieParser());
 app.use(express.json());
@@ -30,8 +30,8 @@ app.post("/imageUpload", controllers.images.imageUpload);
 app.post("/imageDelete", controllers.images.imageDelete);
 app.post("/imageList", controllers.images.imageList);
 
-const server = app.listen(port, () => {
-  console.log(`server listening on ${port}`);
+const server = app.listen(PORT, () => {
+  console.log(`server listening on ${PORT}`);
 });
 
 module.exports = server;
