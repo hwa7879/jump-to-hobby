@@ -9,11 +9,10 @@ const config = require(__dirname + "/../config/config.js")[env];
 const db = {};
 
 let sequelize = new Sequelize({
-  host: config.host,
   username: config.username,
   password: config.password,
-  port: config.port,
   database: config.database,
+  host: config.database,
   dialect: "mysql",
 });
 
@@ -39,5 +38,13 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+const { post, user, posts_img } = sequelize.models;
+//다시확인 user, posts_img =1:n
+post.belongsTo(user);
+user.hasMany(post);
+
+posts_img.belongsTo(post);
+post.hasMany(posts_img);
 
 module.exports = db;
