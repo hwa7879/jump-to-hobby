@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import React, { useState } from "react";
-import Imageboard from "./pages/Imageboard";
+import Imagespage from "./pages/Imagespage";
 import Mainpage from "./pages/Mainpage";
 import Mypage from "./pages/Mypage";
-import Uploadboard from "./pages/Uploadboard";
-
+import Uploadpage from "./pages/Uploadpage";
 import styled from "styled-components";
+import "./App.css";
 
 export default function App() {
   return (
@@ -19,10 +19,10 @@ export default function App() {
             <Mypage />
           </Route>
           <Route path="/images">
-            <Imageboard />
+            <Imagespage />
           </Route>
           <Route path="/upload">
-            <Uploadboard />
+            <Uploadpage />
           </Route>
         </Switch>
       </BrowserRouter>
