@@ -4,12 +4,62 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import ImageModalView from "../component/ImageModalView";
+
 // 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯.
 export const Body = styled.div``;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const ModalContainer = styled.div`
+  position: relative;
+`;
+
+export const ModalBackdrop = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+`;
+
+export const ModalView = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  width: 500px;
+  height: 200px;
+  z-index: 2;
+  border: 1px solid blue;
+  .modal-btn {
+    display: flex;
+    margin-top: 20px;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 90px;
+    height: 35px;
+    color: white;
+    margin: 0px 5px;
+  }
+  .cancel {
+    background-color: gray;
+  }
+  .comfirm {
+    background-color: blue;
+  }
 `;
 
 export const Logo = styled.div`
@@ -29,7 +79,7 @@ export const SideBar = styled.div`
   margin-right: 50px;
   .search-box {
     width: 200px;
-    height: 40px;
+    height: 43px;
     margin: 10px;
   }
   input {
@@ -91,18 +141,19 @@ export const SearchBar = styled.div`
 export const ImagesContainer = styled.div`
   margin-top: 80px;
   ul {
+    margin-left: 50px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
     list-style: none;
   }
 
   img {
     cursor: pointer;
     width: 600px;
-    height: 600px;
+    height: 700px;
     object-fit: cover;
-    border-radius: 50px;
+    border-radius: 40px;
   }
 
   @media only screen and (max-width: 1900px) {
@@ -162,10 +213,27 @@ export const Icon = styled.div`
   }
 `;
 
-const Imageboard = () => {
+const Imagespage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isCountryChange, setIsCountryChange] = useState(false);
   const [isHobbyChange, setIsHobbyChange] = useState(false);
+  const [isImageUrl, setImageUrl] = useState("");
   const history = useHistory();
+
+  const openModalHandler = (e) => {
+    setImageUrl(e.target.src);
+    if (isOpen) {
+      setIsOpen(false);
+    } else if (!isOpen) {
+      setIsOpen(true);
+    }
+  };
+
+  const closeModalHandler = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
 
   const ChangeCountrySearchBar = () => {
     if (isCountryChange) {
@@ -208,16 +276,61 @@ const Imageboard = () => {
     history.push("/mypage");
   };
 
+  // 로그아웃 DELETE
+  const handleLogout = () => {
+    axios.delete("http://jump-to-hobby/users/logout").then((res) => {
+      // setUserinfo(null);
+      // setIsLogin(false);
+      history.push("/");
+    });
+  };
+
   // 이미지 모두 불러오기 GET
+  // 컴포넌트가 처음 생성되거나, props가 업데이트되거나, 상태(state)가 업데이트될 때
   useEffect(() => {
     axios.get("http://jump-to-hobby/images/info").then((res) => {
       console.log(res);
       // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯.
     });
-  }, []);
+  });
+
+  // isOpen 컴포넌트 실행 될때만 서버에 요청 보냄
+  // 이미지 상세 모달창에서 유저 닉네임, 유저 프로필 사진, 이미지 상세 내용 가져와야함.
+  // 1. 이미지 아이디값을 클라이언트 저장해야 이미지와 게시글 수정도 가능할 듯
+  // 이미지 아이디 값을 어디에 저장해서 서버에 보내야하는지?
+  // useEffect(() => {
+  //   axios
+  //     .post(
+  //       "http://jump-to-hobby/users/info",
+  //       { username, email },
+  //       {
+  //         headers: { "Content-Type": "application/json" },
+  //         withCredentials: true,
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // }, [isOpen]);
 
   return (
     <>
+      <ModalContainer>
+        {isOpen ? (
+          <>
+            <ModalBackdrop>
+              <ModalView>
+                <ImageModalView url={isImageUrl} />
+                <div className="modal-btn">
+                  <div className="btn cancel" onClick={closeModalHandler}>
+                    취소
+                  </div>
+                </div>
+              </ModalView>
+            </ModalBackdrop>
+          </>
+        ) : null}
+      </ModalContainer>
       <Body onClick={OffSearchBar}>
         <Header>
           <Logo>
@@ -226,7 +339,7 @@ const Imageboard = () => {
           <SideBar>
             <Menu>
               <MenuButton onClick={ToMyPage}>마이페이지</MenuButton>
-              <MenuButton onClick={ToMainPage}>로그아웃</MenuButton>
+              <MenuButton onClick={handleLogout}>로그아웃</MenuButton>
             </Menu>
             <SearchBar>
               <div
@@ -261,10 +374,19 @@ const Imageboard = () => {
           </SideBar>
         </Header>
         <ImagesContainer>
+          {/* 서버랑 연결 하는 부분 */}
           {/* ul 태그 밑에 서버 이미지파일 넣기, 넣을 때 map활용하기 (key도 꼭 넣기!), key는 뭐로할까? */}
+          {/* <ul>
+            images는 서버에서 주는 파일을 넣자.
+            {images.map((photo) => (
+              <li key={photo.id} onClick={openModalHandler}>
+                <img src={photo.src} />
+              </li>
+            ))}
+          </ul> */}
           <ul>
             <li>
-              <img src="/images/reading.jpg" />
+              <img src="/images/reading.jpg" onClick={openModalHandler} />
             </li>
             <li>
               <img src="/images/sea.jpeg" />
@@ -293,4 +415,4 @@ const Imageboard = () => {
   );
 };
 
-export default Imageboard;
+export default Imagespage;
