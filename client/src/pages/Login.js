@@ -1,22 +1,39 @@
-// import React, { useState } from "react";
-// export default function () {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [isSignup, setisSignup] = useState(false);
-//   return (
-//     <>
-//       <div style={BUTTON_WRAPPER_STYLES}>
-//         <div>
-//           <button onClick={() => setisSignup(true)}>Signin</button>
-//           <Signup open={isSignup} onClose={() => setisSignup(false)}></Signup>
-//         </div>
-//       </div>
-//       <div style={BUTTON_WRAPPER_STYLES}>
-//         <div>
-//           <button onClick={() => setIsOpen(true)}>Login / Logout</button>
-//           <Mainpage open={isOpen} onClose={() => setIsOpen(false)}></Mainpage>
-//         </div>
-//       </div>
-//       {/* <div style={OTHER_CONTENT_STYLES}>이미지 스크롤</div> */}
-//     </>
-//   );
-// }
+import React, { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+export const Logo = styled.img`
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+`;
+
+const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      return alert("이메일과 비밀번호를 채워주세요");
+    }
+
+    axios
+      .post(
+        "http://localhost:3000/login",
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        props.setLogin(true);
+      })
+      .catch((err) => alert(err));
+  };
+
+  return <></>;
+};
+
+export default Login;
