@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  useHistory,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Imagespage from "./pages/Imagespage";
 import Mainpage from "./pages/Mainpage";
@@ -12,6 +6,8 @@ import Mypage from "./pages/Mypage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Uploadpage from "./pages/Uploadpage";
+import { useHistory } from "react-router-dom";
+
 import "./App.css";
 
 export default function App() {
@@ -21,7 +17,7 @@ export default function App() {
   const history = useHistory();
 
   const isAuthenticated = (res) => {
-    setAccessToken(res); // accessToken 저장해서 마이페이지에 전달하기
+    setAccessToken(res.data); // accessToken 저장해서 마이페이지에 전달하기
     setIsLogin(true);
     history.push("/");
   };
