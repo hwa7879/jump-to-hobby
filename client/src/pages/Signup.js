@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 import axios from "axios";
-// 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯
-export const Body = styled.div`
-  background-color: #f2ead3;
-`;
+
+// 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯.
+export const Body = styled.div``;
 
 export const Header = styled.div`
   display: flex;
@@ -31,7 +28,7 @@ export const SideBar = styled.div`
   margin-right: 50px;
   .search-box {
     width: 200px;
-    height: 40px;
+    height: 43px;
     margin: 10px;
   }
   input {
@@ -70,18 +67,14 @@ export const MenuButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+  background-color: #f49c1f;
   font-size: 1rem;
   color: white;
-  width: 100px;
-  height: 50px;
+  width: 120px;
+  height: 250px;
   border-style: none;
   cursor: pointer;
   transition: all 0.3s;
-  margin-right: 0.5rem;
-  border-radius: 25px;
-  margin-top: 50px;
-  background-color: #f49c1f;
 
   :hover {
     background-color: black;
@@ -127,7 +120,6 @@ export const ImagesContainer = styled.div`
     }
   }
 `;
-
 export const ProfileImages = styled.div`
   margin-top: 30px;
   ul {
@@ -157,27 +149,6 @@ export const ProfileImages = styled.div`
   }
 `;
 
-export const TopButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  background-color: blue;
-  color: white;
-  transition: all 0.3s;
-
-  :hover {
-    background-color: black;
-    transition: all 0.3s;
-  }
-`;
-
 export const Icon = styled.div`
   .search-icon {
     cursor: pointer;
@@ -202,47 +173,90 @@ export const Icon = styled.div`
   }
 `;
 
-const Mypage = () => {
-  const [imgUrl, setImgUrl] = useState("");
+export const Inputbox = styled.div`
+  display: flex;
+  margin: 40px 0px;
+`;
+
+const Input = styled.input`
+  font-size: 1rem;
+  width: 150px;
+  height: 70px;
+  padding-left: 5px;
+  color: ${(props) => props.inputColor || "red"};
+  background: papayawhip;
+`;
+
+export const ProfileView = styled.div`
+  /* background-color: black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+`;
+
+export const Button = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  .upload-btn {
+    margin: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cancel {
+    background-color: gray;
+  }
+`;
+
+export default function Signup() {
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
+  const [inputUsername, setInputUsername] = useState("");
   const history = useHistory();
 
-  const ToScrollTope = (e) => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+  const handleChangeEmail = (e) => {
+    setInputEmail(e.target.value);
+  };
+  const handleChangePassword = (e) => {
+    setInputPassword(e.target.value);
   };
 
-  const handleChangeFile = (e) => {
-    let reader = new FileReader();
-    reader.onloadend = () => {
-      const url = reader.result;
-      if (url) {
-        setImgUrl(url.toString());
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
+  const handleChangeUsername = (e) => {
+    setInputUsername(e.target.value);
+  };
+
+  const handleSignup = () => {
+    if (inputEmail === "" || inputPassword === "" || inputUsername === "") {
+      alert("모든 항목은 필수입니다");
+      return;
+    }
+
+    axios
+      .post("http://localhost:80/users/signup", {
+        inputEmail,
+        inputPassword,
+        inputUsername,
+      })
+      .then(() => {
+        history.push("/");
+      });
+    // .catch((err) => alert(err));
   };
 
   const ToMainPage = () => {
     history.push("/");
   };
-
-  const ToImagePage = () => {
-    history.push("/images");
-  };
-
-  const ToUploadPage = () => {
-    history.push("/upload");
-  };
-
-  useEffect(() => {
-    axios.post("http://localhost:80/images/upload").then((res) => {
-      console.log(res);
-    });
-  }, []);
-
   return (
     <>
       <Body>
@@ -250,74 +264,53 @@ const Mypage = () => {
           <Logo>
             <img src="/images/logo.png" onClick={ToMainPage} />
           </Logo>
-          <SideBar>
-            <Menu>
-              <MenuButton onClick={ToMainPage}>로그아웃</MenuButton>
-              <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
-              <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
-              <MenuButton>회원정보수정</MenuButton>
-            </Menu>
-          </SideBar>
+          <SideBar></SideBar>
         </Header>
         <Profile>
           <ProfileImages>
             <ul>
-              <li>
-                <img src="/images/reading.jpg" />
-              </li>
+              <li></li>
               <li>
                 <Menu>
-                  <div>userInfo</div>
+                  <div>
+                    <Input
+                      placeholder="email"
+                      type="text"
+                      inputColor="gray"
+                      value={inputEmail}
+                      onChange={handleChangeEmail}
+                    />
+                    <br />
+                    <Input
+                      placeholder="password"
+                      type="text"
+                      inputColor="gray"
+                      value={inputPassword}
+                      onChange={handleChangePassword}
+                    />
+                    <br />
+                    <Input
+                      placeholder="username"
+                      type="text"
+                      inputColor="gray"
+                      value={inputUsername}
+                      onChange={handleChangeUsername}
+                    />
+                    <br />
+                  </div>
+
+                  <MenuButton onClick={handleSignup}>Signup</MenuButton>
                 </Menu>
               </li>
             </ul>
           </ProfileImages>
         </Profile>
         <SideBar>
-          <Menu></Menu>
+          <Menu>
+            <div></div>
+          </Menu>
         </SideBar>
-        <ImagesContainer>
-          {/* ul 태그 밑에 서버 이미지파일 넣기, 넣을 때 map활용하기 (key도 꼭 넣기!), key는 뭐로할까? */}
-          <ul>
-            <li>
-              <img src="/images/reading.jpg" />
-            </li>
-            <li>
-              <img src="/images/sea.jpeg" />
-            </li>
-            <li>
-              <img src="/images/logo.png" />
-            </li>
-            <li>
-              <img src="/images/sea.jpeg" />
-            </li>
-            <li>
-              <img src="/images/sea.jpeg" />
-            </li>
-            <li>
-              <img src="/images/sea.jpeg" />
-            </li>
-          </ul>
-        </ImagesContainer>
-        <TopButton onClick={ToScrollTope}>
-          <Icon>
-            <FontAwesomeIcon icon={faAngleDoubleUp} className="search-arrow" />
-          </Icon>
-        </TopButton>
       </Body>
     </>
   );
-};
-
-export default Mypage;
-
-// export const Logo = styled.div`
-//   > img {
-//     width: 200px;
-//     height: 200px;
-//     margin-left: 20px;
-//     cursor: pointer;
-//   }
-// `;
-
-// const Mypage = () => {};
+}
