@@ -6,11 +6,15 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 export const MainWrapper = styled.div`
+  position: relative;
   display: flex;
+  background-color: #f2ead3;
+  height: 100vh;
 `;
 
 export const ModalContainer = styled.div`
   position: relative;
+  background-color: #f2ead3;
 `;
 
 export const ModalBackdrop = styled.div`
@@ -18,7 +22,6 @@ export const ModalBackdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(140, 140, 140, 0.5); */
   width: 100vw;
   height: 100vh;
   z-index: 1;
@@ -34,7 +37,7 @@ export const ModalView = styled.div`
   width: 500px;
   height: 200px;
   z-index: 2;
-  border: 1px solid blue;
+  border: 1px solid #f49c1f;
 
   .modal-btn {
     display: flex;
@@ -54,12 +57,12 @@ export const ModalView = styled.div`
     background-color: gray;
   }
   .comfirm {
-    background-color: blue;
+    background-color: #f49c1f;
   }
 `;
 
 export const Logo = styled.div`
-  position: fixed;
+  position: absolute;
   > img {
     width: 200px;
     height: 200px;
@@ -78,7 +81,7 @@ export const UploadWrapper = styled.div`
   .img-btn-container {
     width: 700px;
     height: 40px;
-    background-color: gray;
+    background-color: #f49c1f;
   }
 
   > img {
@@ -93,6 +96,7 @@ export const UploadWrapper = styled.div`
     height: 150px;
     padding-top: 10px;
     padding-left: 5px;
+    border: 1px solid #f49c1f;
   }
 
   .input-hobby {
@@ -116,7 +120,7 @@ export const Button = styled.div`
     cursor: pointer;
     width: 100px;
     height: 35px;
-    background-color: blue;
+    background-color: #f49c1f;
     color: white;
     display: flex;
     align-items: center;
