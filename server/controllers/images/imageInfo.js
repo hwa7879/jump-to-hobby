@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
         });
       }
     });
+
   // const { posts_id } = req.body;
   // const imageInfo = await posts_imgs
   //   .findAll({

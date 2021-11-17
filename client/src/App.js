@@ -1,52 +1,35 @@
-import {
-  BrowserRouter,
-  Route,
-  useHistory,
-  Switch,
-  Link,
-  Redirect,
-} from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Imagespage from "./pages/Imagespage";
 import Mainpage from "./pages/Mainpage";
 import Mypage from "./pages/Mypage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Uploadpage from "./pages/Uploadpage";
-import axios from "axios";
-import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import "./App.css";
 
 export default function App() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [userinfo, setUserinfo] = useState(null);
-  const history = useHistory();
-  const isAuthenticated = () => {
-    axios
-      .get("http://localhost:80/userInfo")
-      .then((res) => {
-        setIsLogin(true);
-        setUserinfo(res.data.data.userInfo);
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const handleResponseSuccess = () => {
-    isAuthenticated();
-  };
+  const [isLogin, setIsLogin] = useState(false); // 로그인한 사람만 마이페이지로 갈 수 있게함.
+  const [accessToken, setAccessToken] = useState("");
 
-  useEffect(() => {
-    isAuthenticated();
-  }, []);
+  const history = useHistory();
+
+  const isAuthenticated = (res) => {
+    setAccessToken(res.data); // accessToken 저장해서 마이페이지에 전달하기
+    setIsLogin(true);
+    history.push("/");
+  };
+  const handleResponseSuccess = (res) => {
+    isAuthenticated(res);
+  };
 
   return (
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/mainpage">
             <Mainpage />
           </Route>
           <Route path="/login">
@@ -55,27 +38,23 @@ export default function App() {
               // handleResponseSuccess={handleResponseSuccess}
             />
           </Route>
-          <Route path="/signup">
-            <Signup isLogin={isLogin} />
+          <Route exact path="/signup">
+            <Signup />
           </Route>
-          <Route path="/mypage">
-            <Mypage />
+          <Route exact path="/mypage">
+            <Mypage accessToken={accessToken} />
           </Route>
-          <Route path="/images">
+          <Route exact path="/images">
             <Imagespage />
           </Route>
-          <Route path="/upload">
+          <Route exact path="/upload">
             <Uploadpage />
           </Route>
-          <Route exact path="/">
-            {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
+          <Route path="/">
+            {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/mainpage" />}
           </Route>
         </Switch>
       </BrowserRouter>
-      {/* <div>
-        <div>Modal</div>
-        <Modal />
-      </div> */}
     </>
   );
 }

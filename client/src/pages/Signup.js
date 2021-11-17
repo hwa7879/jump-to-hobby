@@ -230,33 +230,33 @@ export const Button = styled.div`
 `;
 
 export default function Signup() {
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
-  const [inputUsername, setInputUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const history = useHistory();
 
   const handleChangeEmail = (e) => {
-    setInputEmail(e.target.value);
+    setEmail(e.target.value);
   };
   const handleChangePassword = (e) => {
-    setInputPassword(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleChangeUsername = (e) => {
-    setInputUsername(e.target.value);
+    setUsername(e.target.value);
   };
 
   const handleSignup = () => {
-    if (inputEmail === "" || inputPassword === "" || inputUsername === "") {
+    if (email === "" || password === "" || username === "") {
       alert("모든 항목은 필수입니다");
       return;
     }
 
     axios
       .post("http://localhost:80/signup", {
-        inputEmail,
-        inputPassword,
-        inputUsername,
+        email,
+        password,
+        username,
       })
       .then(() => {
         history.push("/");

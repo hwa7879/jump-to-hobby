@@ -1,4 +1,4 @@
-const { users } = require("../../models");
+const { user } = require("../../models");
 
 module.exports = async (req, res) => {
   const { username, email, password } = req.body;
@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   }
 
   // 특정 요소를 검색하거나, 존재하지 않으면 새로 생성 (findOrCreate)
-  const [createUser, created] = await users.findOrCreate({
+  const [createUser, created] = await user.findOrCreate({
     where: { email },
     defaults: { username, email, password },
   });

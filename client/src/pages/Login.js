@@ -260,42 +260,40 @@ export const Button = styled.div`
   }
 `;
 
-export default function Login() {
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
+export default function Login({ handleResponseSuccess }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
   const handleChangeEmail = (e) => {
-    setInputEmail(e.target.value);
+    setEmail(e.target.value);
   };
   const handleChangePassword = (e) => {
-    setInputPassword(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleLogin = () => {
-    //console.log("@@@@@");
-    if (inputEmail === "" || inputPassword === "") {
+    if (email === "" || password === "") {
       alert("이메일과 비밀번호를 입력하세요");
       return;
     }
+
     axios
       .post(
         "http://localhost:80/login",
         {
-          inputEmail,
-          inputPassword,
+          email,
+          password,
         },
         { "Content-Type": "application/json", withCredentials: true }
       )
       .then((res) => {
         console.log(res);
         history.push("/");
+        // handleResponseSuccess(res);
       });
   };
-  //   const ToMyPage = () => {
-  //     history.push("/mypage");
-  //  };
-  //};
+
   const ToMainPage = () => {
     history.push("/");
   };
