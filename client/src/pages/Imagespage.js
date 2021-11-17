@@ -287,9 +287,9 @@ const Imagespage = () => {
     history.push("/upload");
   };
 
-  // 로그아웃 DELETE
+  // 로그아웃 POST
   const handleLogout = () => {
-    axios.delete("http://localhost:80/logout").then((res) => {
+    axios.post("http://localhost:80/logout").then((res) => {
       // setUserinfo(null);
       // setIsLogin(false);
       history.push("/");
@@ -334,7 +334,7 @@ const Imagespage = () => {
   // useEffect(() => {
   //   axios
   //     .post(
-  //       "http://jump-to-hobby/users/info",
+  //       "http://localhost:80/userInfo",
   //       { username, email },
   //       {
   //         headers: { "Content-Type": "application/json" },

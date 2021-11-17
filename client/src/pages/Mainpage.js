@@ -53,54 +53,6 @@ export const ModalView = styled.div`
   }
 `;
 
-const MODAL_STYLES = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 250px;
-`;
-
-const OVERLAY_STYLES = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0 0.7);
-`;
-
-const loginbutton_style = styled.button`
-  // background: "#FFBB00",
-  // padding: "15px",
-  // border: "none",
-
-  padding: 15px;
-  background-color: skyblue;
-`;
-
-const button_style = styled.div`
-  // background: "#FFBB00",
-  position: absolute;
-`;
-
-const content_box = styled.div`
-  position: relative;
-
-  background-color: skyblue;
-  padding: 120px;
-`;
-const text_box = styled.input`
-  padding: 20px;
-`;
-
-const button_box = styled.div`
-  padding: 8;
-  background-color: yellow;
-  border-radius: 5;
-`;
-
 export const Logo = styled.img`
   position: absolute;
   z-index: 1;
