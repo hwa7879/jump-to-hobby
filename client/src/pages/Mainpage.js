@@ -235,7 +235,7 @@ export const Body = styled.div`
 
 export default function Mainpage() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isImageUrl, setImageUrl] = useState("");
+  const [img_url, setImageUrl] = useState("");
 
   const history = useHistory();
 
@@ -279,22 +279,22 @@ export default function Mainpage() {
   useEffect(() => {
     axios.get("http://localhost:80/imageInfo").then((res) => {
       console.log(res);
-      // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯.
+      // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯. // const [images, setImages] = useState("")
     });
   });
 
   // 이미지 더미 데이터입니다.
   const data = [
-    { img_url: "/images/soupe.jpg", img_id: 0 },
-    { img_url: "/images/reading.jpg", img_id: 1 },
-    { img_url: "/images/game.jpg", img_id: 2 },
-    { img_url: "/images/baseketball.jpg", img_id: 3 },
-    { img_url: "/images/mario.jpg", img_id: 4 },
-    { img_url: "/images/pigure.jpg", img_id: 5 },
-    { img_url: "/images/coffie.jpg", img_id: 6 },
-    { img_url: "/images/sea.jpeg", img_id: 7 },
-    { img_url: "/images/travel.jpg", img_id: 8 },
-    { img_url: "/images/trip.jpg", img_id: 9 },
+    { img_url: "/images/soupe.jpg", posts_id: 0 },
+    { img_url: "/images/reading.jpg", posts_id: 1 },
+    { img_url: "/images/game.jpg", posts_id: 2 },
+    { img_url: "/images/baseketball.jpg", posts_id: 3 },
+    { img_url: "/images/mario.jpg", posts_id: 4 },
+    { img_url: "/images/pigure.jpg", posts_id: 5 },
+    { img_url: "/images/coffie.jpg", posts_id: 6 },
+    { img_url: "/images/sea.jpeg", posts_id: 7 },
+    { img_url: "/images/travel.jpg", posts_id: 8 },
+    { img_url: "/images/trip.jpg", posts_id: 9 },
   ];
 
   const RandomImage = (data) => {
@@ -317,7 +317,7 @@ export default function Mainpage() {
           <>
             <ModalBackdrop>
               <ModalView>
-                <ImageModalView url={isImageUrl} />
+                <ImageModalView url={img_url} />
                 <div className="modal-btn">
                   <div className="btn cancel" onClick={closeModalHandler}>
                     취소
@@ -352,8 +352,9 @@ export default function Mainpage() {
         </ProfileView>
         <div className="image-container">
           <ul>
+            {/* data대신에 imgaes */}
             {RandomImage(data).map((image) => (
-              <li key={image.img_id} onClick={openModalHandler}>
+              <li key={image.posts_id} onClick={openModalHandler}>
                 <img src={image.img_url} />
               </li>
             ))}
