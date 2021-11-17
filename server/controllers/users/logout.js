@@ -1,4 +1,4 @@
-const { users } = require("../../models");
+const { user } = require("../../models");
 const { verifyAccessToken } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
