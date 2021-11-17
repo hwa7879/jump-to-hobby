@@ -278,6 +278,7 @@ export default function Login({ handleResponseSuccess }) {
       .then((res) => {
         console.log(res);
         history.push("/");
+        // handleResponseSuccess(res);
       });
   };
 
