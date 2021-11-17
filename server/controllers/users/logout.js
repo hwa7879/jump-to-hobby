@@ -1,7 +1,10 @@
 module.exports = (req, res) => {
-  res.cookie("login", false);
-  res.cookie("accessToken", null);
-  res.status(200).send("성공적으로 로그아웃 되셨습니다.");
+  if (req.session) {
+    req.session.destroy();
+    res.status(200).send({ message: "successfully signed out!" });
+  } else {
+    res.status(400).send({ message: "you're currently not logined" });
+  }
 };
 
 // const { accessToken } = req.body;

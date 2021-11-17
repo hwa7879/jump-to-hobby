@@ -1,7 +1,7 @@
 const { posts_imgs, posts } = require("../../models");
 //const { isAuthorized } = require("../tokenFunctions");
 module.exports = async (req, res) => {
-  const { username } = req.body;
+  const { username } = req.params;
   if (!username) {
     return res.status(400).send({ message: "닉네임을 확인해주세요" });
   }
