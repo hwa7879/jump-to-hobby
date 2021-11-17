@@ -1,14 +1,15 @@
 const { posts_imgs, posts } = require("../../models");
 //const { isAuthorized } = require("../tokenFunctions");
 module.exports = async (req, res) => {
-  const { username } = req.params;
-  if (!username) {
-    return res.status(400).send({ message: "닉네임을 확인해주세요" });
-  }
+  const { username } = req.body;
+  // if (!username) {
+  //   return res.status(400).send({ message: "닉네임을 확인해주세요" });
+  // }
   const userImg = await posts.findOne({
     where: {
-      users_id: username,
+      user_id,
     },
+    attributes: [username],
   });
   if (!userImg) {
     return res.status(404).send({ message: "Not found" });

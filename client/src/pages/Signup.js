@@ -60,7 +60,7 @@ export const SideBar = styled.div`
 
 export const Menu = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: right;
 `;
 
 export const MenuButton = styled.button`
@@ -71,14 +71,10 @@ export const MenuButton = styled.button`
   font-size: 1rem;
   color: white;
   width: 120px;
-  height: 40px;
+  height: 250px;
   border-style: none;
-  margin-top: 10px;
   cursor: pointer;
   transition: all 0.3s;
-  margin-right: 0.5rem;
-  border-radius: 10px;
-  background-color: #f49c1f;
 
   :hover {
     background-color: black;
@@ -189,13 +185,6 @@ const Input = styled.input`
   padding-left: 5px;
   color: ${(props) => props.inputColor || "red"};
   background: papayawhip;
-  /* display: flex;s
-  padding: 0.5em;
-  margin: 0.5em;
-  
-  background: papayawhip;
-  border: none;
-  border-radius: 3px; */
 `;
 
 export const ProfileView = styled.div`
@@ -206,24 +195,6 @@ export const ProfileView = styled.div`
   flex-direction: column;
   width: 50%;
   height: 100vh;
-  /* border: 1px; */
-  /* float: right; */
-
-  /* width: 500px;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 50px;
-  line-height: 200px;
-  height: 200px;
-  border: 3px; */
-
-  /* ul {
-    border: 2px solid #87c1ff;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 5px;
-    list-style: none;
-  } */
 `;
 
 export const Button = styled.div`
@@ -248,9 +219,10 @@ export const Button = styled.div`
   }
 `;
 
-export default function Login() {
+export default function Signup() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
+  const [inputUsername, setInputUsername] = useState("");
   const history = useHistory();
 
   const handleChangeEmail = (e) => {
@@ -260,29 +232,28 @@ export default function Login() {
     setInputPassword(e.target.value);
   };
 
-  const handleLogin = () => {
-    //console.log("@@@@@");
-    if (inputEmail === "" || inputPassword === "") {
-      alert("이메일과 비밀번호를 입력하세요");
+  const handleChangeUsername = (e) => {
+    setInputUsername(e.target.value);
+  };
+
+  const handleSignup = () => {
+    if (inputEmail === "" || inputPassword === "" || inputUsername === "") {
+      alert("모든 항목은 필수입니다");
       return;
     }
+
     axios
-      .post(
-        "http://localhost:80/login ",
-        {
-          inputEmail,
-          inputPassword,
-        },
-        { "Content-Type": "application/json", withCredentials: true }
-      )
+      .post("http://localhost:80/signup", {
+        inputEmail,
+        inputPassword,
+        inputUsername,
+      })
       .then(() => {
         history.push("/");
       });
+    // .catch((err) => alert(err));
   };
-  //   const ToMyPage = () => {
-  //     history.push("/mypage");
-  //  };
-  //};
+
   const ToMainPage = () => {
     history.push("/");
   };
@@ -305,22 +276,30 @@ export default function Login() {
                     <Input
                       placeholder="email"
                       type="text"
-                      inputColor="black"
+                      inputColor="gray"
                       value={inputEmail}
                       onChange={handleChangeEmail}
                     />
                     <br />
                     <Input
                       placeholder="password"
-                      type="password"
-                      inputColor="black"
+                      type="text"
+                      inputColor="gray"
                       value={inputPassword}
                       onChange={handleChangePassword}
                     />
                     <br />
+                    <Input
+                      placeholder="username"
+                      type="text"
+                      inputColor="gray"
+                      value={inputUsername}
+                      onChange={handleChangeUsername}
+                    />
+                    <br />
                   </div>
 
-                  <MenuButton onClick={handleLogin}>Login</MenuButton>
+                  <MenuButton onClick={handleSignup}>Signup</MenuButton>
                 </Menu>
               </li>
             </ul>
