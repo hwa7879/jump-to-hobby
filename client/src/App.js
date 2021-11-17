@@ -14,26 +14,26 @@ export default function App() {
   const [isLogin, setIsLogin] = useState(false); // 로그인한 사람만 마이페이지로 갈 수 있게함.
   const [accessToken, setAccessToken] = useState("");
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const isAuthenticated = (res) => {
-    setAccessToken(res.data); // accessToken 저장해서 마이페이지에 전달하기
-    setIsLogin(true);
-    history.push("/");
-  };
-  const handleResponseSuccess = (res) => {
-    isAuthenticated(res);
-  };
+  // const isAuthenticated = (res) => {
+  //   setAccessToken(res.data); // accessToken 저장해서 마이페이지에 전달하기
+  //   setIsLogin(true);
+  //   history.push("/");
+  // };
+  // const handleResponseSuccess = (res) => {
+  //   isAuthenticated(res);
+  // };
 
   return (
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/mainpage">
+          <Route exact path="/">
             <Mainpage />
           </Route>
           <Route exact path="/login">
-            <Login handleResponseSuccess={handleResponseSuccess} />
+            <Login />
           </Route>
           <Route exact path="/signup">
             <Signup />
@@ -46,9 +46,6 @@ export default function App() {
           </Route>
           <Route exact path="/upload">
             <Uploadpage />
-          </Route>
-          <Route path="/">
-            {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/mainpage" />}
           </Route>
         </Switch>
       </BrowserRouter>

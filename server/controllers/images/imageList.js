@@ -22,16 +22,3 @@ module.exports = async (req, res) => {
     return res.status(200).send(img);
   }
 };
-// const userImg = isAuthorized(req);
-//   const img = await posts_imgs.findOne({
-//     where: {
-//       img_url,
-//     },
-//   });
-//   if (!userImg) {
-//     return res.status(403).send({ message: "존재하지 않는 유저입니다" });
-//   }
-//   await users.findOne({
-//     where: { username },
-//   });
-//   return res.status(200).send(img);

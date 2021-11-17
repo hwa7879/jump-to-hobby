@@ -341,6 +341,15 @@ const Mypage = () => {
     history.push("/upload");
   };
 
+  // 로그아웃 POST
+  const handleLogout = () => {
+    axios.post("http://localhost:80/logout").then((res) => {
+      // setUserinfo(null);
+      alert("로그아웃 되었습니다.");
+      history.push("/");
+    });
+  };
+
   const handleEdit = () => {
     if (
       imgUrl === "" ||
@@ -429,7 +438,7 @@ const Mypage = () => {
           </Logo>
           <SideBar>
             <Menu>
-              <MenuButton onClick={ToMainPage}>로그아웃</MenuButton>
+              <MenuButton onClick={handleLogout}>로그아웃</MenuButton>
               <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
               <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
               <MenuButton onClick={openModalHandler}>회원정보수정</MenuButton>
