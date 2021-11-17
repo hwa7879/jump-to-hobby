@@ -1,9 +1,9 @@
 const { posts_imgs } = require("../../models");
 
 module.exports = async (req, res) => {
-  const { posts_id } = req.params;
+  const { posts_id } = req.body;
   const imageInfo = await posts_imgs
-    .findOne({
+    .findAll({
       where: { id: posts_id },
       attributes: ["id", "img_url"],
     })

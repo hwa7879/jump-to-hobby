@@ -10,7 +10,7 @@ module.exports = {
           username: "data1",
           email: "data1@high4.com",
           password: "123456",
-          users_img:
+          users_image:
             "https://cdn.discordapp.com/attachments/907147691765674049/907910847534366730/logo_2.png",
           createdAt,
           updatedAt,
@@ -19,7 +19,7 @@ module.exports = {
           username: "data2",
           email: "data2@high4.com",
           password: "123456",
-          users_img:
+          users_image:
             "https://cdn.discordapp.com/attachments/907147691765674049/907910847534366730/logo_2.png",
           createdAt,
           updatedAt,
@@ -28,7 +28,7 @@ module.exports = {
           username: "data3",
           email: "data3@high4.com",
           password: "123456",
-          users_img:
+          users_image:
             "https://cdn.discordapp.com/attachments/907147691765674049/907910847534366730/logo_2.png",
           createdAt,
           updatedAt,
@@ -37,7 +37,7 @@ module.exports = {
           username: "data4",
           email: "data4@high4.com",
           password: "123456",
-          users_img:
+          users_image:
             "https://cdn.discordapp.com/attachments/907147691765674049/907910847534366730/logo_2.png",
           createdAt,
           updatedAt,
@@ -46,7 +46,7 @@ module.exports = {
           username: "deta5",
           email: "data5@high4.com",
           password: "123456",
-          users_img:
+          users_image:
             "https://cdn.discordapp.com/attachments/907147691765674049/907910847534366730/logo_2.png",
           createdAt,
           updatedAt,
@@ -55,7 +55,7 @@ module.exports = {
           username: "data6",
           email: "data6@gmail.com",
           password: "123456",
-          users_img:
+          users_image:
             "https://cdn.discordapp.com/attachments/907147691765674049/907910847534366730/logo_2.png",
           createdAt,
           updatedAt,

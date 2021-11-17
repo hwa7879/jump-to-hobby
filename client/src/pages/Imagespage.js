@@ -311,7 +311,7 @@ const Imagespage = () => {
   // 이미지 모두 불러오기 GET
   // 컴포넌트가 처음 생성되거나, props가 업데이트되거나, 상태(state)가 업데이트될 때
   useEffect(() => {
-    axios.get("http://jump-to-hobby/images/info").then((res) => {
+    axios.get("http://localhost:80/imageInfo").then((res) => {
       console.log(res);
       // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯.
     });
