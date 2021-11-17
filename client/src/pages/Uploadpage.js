@@ -216,7 +216,7 @@ const Uploadpage = () => {
     // 이미지 업로드 POST 입니다
     axios
       .post(
-        "http://jump-to-hobby/images/upload",
+        "http://localhost:80/imageUpload",
         {
           imgUrl,
           inputHobby,

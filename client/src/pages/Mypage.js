@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 // 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯
-export const Body = styled.div``;
+export const Body = styled.div`
+  background-color: #f2ead3;
+`;
 
 export const ModalContainer = styled.div`
   position: relative;
@@ -58,7 +60,6 @@ export const ModalView = styled.div`
     background-color: #f49c1f;
     color: white;
   }
-
   .modal-btn {
     display: flex;
     margin-top: 20px;
@@ -150,6 +151,10 @@ export const MenuButton = styled.button`
   border-style: none;
   cursor: pointer;
   transition: all 0.3s;
+  margin-right: 0.5rem;
+  border-radius: 25px;
+  margin-top: 50px;
+  background-color: #f49c1f;
 
   :hover {
     background-color: black;
@@ -271,8 +276,6 @@ export const Icon = styled.div`
 `;
 
 const Mypage = () => {
-  //const [isCountryChangee, setIsCountryChangee] = useState(false);
-  // const [isHobbyChangee, setIsHobbyChangee] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [inputUsername, setInputUsername] = useState("");
@@ -306,31 +309,6 @@ const Mypage = () => {
   const handleInputPassword = (e) => {
     setInputPassword(e.target.value);
   };
-
-  //   const ChangeCountrySearchBare = () => {
-  //     if (isCountryChangee) {
-  //       setIsCountryChangee(false);
-  //     } else if (!isCountryChangee) {
-  //       setIsCountryChangee(true);
-  //     }
-  //   };
-
-  //   const ChangeHobbySearchBare = () => {
-  //     if (isHobbyChangee) {
-  //       setIsHobbyChangee(false);
-  //     } else if (!isHobbyChangee) {
-  //       setIsHobbyChangee(true);
-  //     }
-  //   };
-
-  //   const OffSearchBare = () => {
-  //     if (isCountryChangee) {
-  //       setIsCountryChangee(false);
-  //     }
-  //     if (isHobbyChangee) {
-  //       setIsHobbyChangee(false);
-  //     }
-  //   };
 
   const ToScrollTope = (e) => {
     window.scroll({
@@ -375,20 +353,20 @@ const Mypage = () => {
     }
 
     // api 맨뒤에 id는??
-    axios.post(
-      "http://jump-to-hobby/users/update/:id",
-      {
-        inputUsername,
-        inputEmail,
-        inputPassword,
-        // users_img, <<< 유저 이미지도 수정할 때 서버로 보내야 할 것같아요.
-      },
-      { "Content-Type": "application/json", withCredentials: true }
-    );
+    // axios.post(
+    //   "http://jump-to-hobby/users/update/:id",
+    //   {
+    //     inputUsername,
+    //     inputEmail,
+    //     inputPassword,
+    //     // users_img, <<< 유저 이미지도 수정할 때 서버로 보내야 할 것같아요.
+    //   },
+    //   { "Content-Type": "application/json", withCredentials: true }
+    // );
   };
 
   useEffect(() => {
-    axios.post("http://jump-to-hobby/images/upload").then((res) => {
+    axios.post("http://localhost:80/imageUpload").then((res) => {
       console.log(res);
     });
   }, []);
@@ -453,6 +431,8 @@ const Mypage = () => {
             <Menu>
               <MenuButton onClick={ToMainPage}>로그아웃</MenuButton>
               <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
+              <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
+              <MenuButton onClick={openModalHandler}>회원정보수정</MenuButton>
             </Menu>
           </SideBar>
         </Header>
@@ -461,32 +441,20 @@ const Mypage = () => {
             <ul>
               <li>
                 <img src="/images/reading.jpg" />
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleChangeFile}
-                />
               </li>
               <li>
                 <Menu>
-                  <div>+++++++여기에 로그인 프로필++++++++</div>
-
-                  <MenuButton onClick={openModalHandler}>
-                    회원정보수정
-                  </MenuButton>
+                  <div>userInfo</div>
                 </Menu>
               </li>
             </ul>
           </ProfileImages>
         </Profile>
         <SideBar>
-          <Menu>
-            <div>
-              <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
-            </div>
-          </Menu>
+          <Menu></Menu>
         </SideBar>
         <ImagesContainer>
+          {/* ul 태그 밑에 서버 이미지파일 넣기, 넣을 때 map활용하기 (key도 꼭 넣기!), key는 뭐로할까? */}
           <ul>
             <li>
               <img src="/images/reading.jpg" />
@@ -519,3 +487,14 @@ const Mypage = () => {
 };
 
 export default Mypage;
+
+// export const Logo = styled.div`
+//   > img {
+//     width: 200px;
+//     height: 200px;
+//     margin-left: 20px;
+//     cursor: pointer;
+//   }
+// `;
+
+// const Mypage = () => {};

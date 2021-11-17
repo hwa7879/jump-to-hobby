@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+
 import axios from "axios";
 import ImageModalView from "../component/ImageModalView";
 
@@ -60,6 +61,8 @@ export const Logo = styled.img`
   height: 200px;
   margin-left: 20px;
   cursor: pointer;
+  position: absolute;
+  z-index: 999;
 `;
 export const Menu = styled.div`
   position: absolute;
@@ -71,7 +74,7 @@ export const MenuButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+
   font-size: 1rem;
   color: white;
   width: 100px;
@@ -79,6 +82,10 @@ export const MenuButton = styled.button`
   border-style: none;
   cursor: pointer;
   transition: all 0.3s;
+  margin-right: 0.5rem;
+  border-radius: 25px;
+  margin-top: 50px;
+  background-color: #f49c1f;
 
   :hover {
     background-color: black;
@@ -90,6 +97,7 @@ export const Header = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
+  background-color: #f2ead3;
 `;
 
 export const SideBar = styled.div`
@@ -171,13 +179,14 @@ export const ProfileView = styled.div`
   height: 200px;
   border: 3px; */
 
-  /* ul {
-    border: 2px solid #87c1ff;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 5px;
-    list-style: none;
-  } */
+  .title {
+    font-size: 5rem;
+    font-weight: bold;
+  }
+  .title-content {
+    font-size: 1.8rem;
+    color: #5e5d5d;
+  }
 `;
 
 export const Body = styled.div`
@@ -185,6 +194,7 @@ export const Body = styled.div`
   position: relative;
   display: flex;
   flex-direction: row-reverse;
+  background-color: #f2ead3;
 
   .image-container {
     position: relative;
@@ -256,11 +266,18 @@ export default function Mainpage() {
     history.push("/mypage");
   };
 
+  const ToLogin = () => {
+    history.push("/login");
+  };
+
+  const ToSignup = () => {
+    history.push("/signup");
+  };
   // 이미지 랜덤 렌더링
   // 서버에 모든 이미지 가져오기 요청 GET
   // 컴포넌트가 처음 생성되거나, props가 업데이트되거나, 상태(state)가 업데이트될 때
   useEffect(() => {
-    axios.get("http://jump-to-hobby/images/info").then((res) => {
+    axios.get("http://localhost:80/imageInfo").then((res) => {
       console.log(res);
       // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯.
     });
@@ -318,14 +335,20 @@ export default function Mainpage() {
 
       <Body>
         <Button>
-          <MenuButton>Signup</MenuButton>
-          <MenuButton>Login / Logout</MenuButton>
-          <MenuButton onClick={ToImagePage}>이미지게시판</MenuButton>
-          <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
+          <MenuButton onClick={ToMyPage}>마이페이지</MenuButton>
+          <MenuButton onClick={ToLogin}>로그인</MenuButton>
+          <MenuButton onClick={ToSignup}>회원가입</MenuButton>
+          <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
+          <MenuButton onClick={ToUploadPage}>업로드</MenuButton>
         </Button>
         <ProfileView>
-          ""님 환영합니다!
-          <MenuButton onClick={ToMyPage}>내정보(Mypage)</MenuButton>
+          <div className="title">Enjoy your hobby</div>
+
+          <div className="title-content">
+            Are you enjoying your hobbies by yourself? <br />
+            Do you want to share your hobbies with others? <br />
+            Share your hobbies on jump-to-hobby.
+          </div>
         </ProfileView>
         <div className="image-container">
           <ul>

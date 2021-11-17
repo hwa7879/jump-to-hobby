@@ -130,6 +130,8 @@ export const MenuButton = styled.button`
   border-style: none;
   cursor: pointer;
   transition: all 0.3s;
+  margin-right: 0.5rem;
+  border-radius: 25px;
 
   :hover {
     background-color: black;
