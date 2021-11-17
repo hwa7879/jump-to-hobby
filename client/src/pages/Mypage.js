@@ -5,80 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 // 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯
-export const Body = styled.div``;
-
-export const ModalContainer = styled.div`
-  position: relative;
-`;
-
-export const ModalBackdrop = styled.div`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-`;
-
-export const ModalView = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: white;
-  position: absolute;
-  width: 500px;
-  height: 700px;
-  z-index: 2;
-  border: 1px solid blue;
-  img {
-    margin-top: 30px;
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    background-color: #efefef;
-  }
-  input {
-    width: 200px;
-    height: 30px;
-    margin: 8px 0px;
-  }
-  #input-file {
-    display: none;
-  }
-  .icon-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    width: 40px;
-    height: 30px;
-    background-color: #f49c1f;
-    color: white;
-  }
-
-  .modal-btn {
-    display: flex;
-    margin-top: 20px;
-  }
-  .btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    width: 90px;
-    height: 35px;
-    color: white;
-    margin: 0px 5px;
-  }
-  .cancel {
-    background-color: gray;
-  }
-  .comfirm {
-    background-color: #f49c1f;
-  }
+export const Body = styled.div`
+  background-color: #f2ead3;
 `;
 
 export const Header = styled.div`
@@ -150,6 +78,10 @@ export const MenuButton = styled.button`
   border-style: none;
   cursor: pointer;
   transition: all 0.3s;
+  margin-right: 0.5rem;
+  border-radius: 25px;
+  margin-top: 50px;
+  background-color: #f49c1f;
 
   :hover {
     background-color: black;
@@ -271,66 +203,8 @@ export const Icon = styled.div`
 `;
 
 const Mypage = () => {
-  //const [isCountryChangee, setIsCountryChangee] = useState(false);
-  // const [isHobbyChangee, setIsHobbyChangee] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [inputUsername, setInputUsername] = useState("");
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
-
   const history = useHistory();
-
-  const openModalHandler = (e) => {
-    if (isOpen) {
-      setIsOpen(false);
-    } else if (!isOpen) {
-      setIsOpen(true);
-    }
-  };
-
-  const closeModalHandler = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  };
-
-  const handleInputUsername = (e) => {
-    setInputUsername(e.target.value);
-  };
-
-  const handleInputEmail = (e) => {
-    setInputEmail(e.target.value);
-  };
-
-  const handleInputPassword = (e) => {
-    setInputPassword(e.target.value);
-  };
-
-  //   const ChangeCountrySearchBare = () => {
-  //     if (isCountryChangee) {
-  //       setIsCountryChangee(false);
-  //     } else if (!isCountryChangee) {
-  //       setIsCountryChangee(true);
-  //     }
-  //   };
-
-  //   const ChangeHobbySearchBare = () => {
-  //     if (isHobbyChangee) {
-  //       setIsHobbyChangee(false);
-  //     } else if (!isHobbyChangee) {
-  //       setIsHobbyChangee(true);
-  //     }
-  //   };
-
-  //   const OffSearchBare = () => {
-  //     if (isCountryChangee) {
-  //       setIsCountryChangee(false);
-  //     }
-  //     if (isHobbyChangee) {
-  //       setIsHobbyChangee(false);
-  //     }
-  //   };
 
   const ToScrollTope = (e) => {
     window.scroll({
@@ -363,87 +237,14 @@ const Mypage = () => {
     history.push("/upload");
   };
 
-  const handleEdit = () => {
-    if (
-      imgUrl === "" ||
-      inputUsername === "" ||
-      inputEmail === "" ||
-      inputPassword === ""
-    ) {
-      alert("양식을 채워주세요!");
-      return;
-    }
-
-    // api 맨뒤에 id는??
-    axios.post(
-      "http://jump-to-hobby/users/update/:id",
-      {
-        inputUsername,
-        inputEmail,
-        inputPassword,
-        // users_img, <<< 유저 이미지도 수정할 때 서버로 보내야 할 것같아요.
-      },
-      { "Content-Type": "application/json", withCredentials: true }
-    );
-  };
-
   useEffect(() => {
-    axios.post("http://jump-to-hobby/images/upload").then((res) => {
+    axios.post("http://localhost:80/imageUpload").then((res) => {
       console.log(res);
     });
   }, []);
 
   return (
     <>
-      <ModalContainer>
-        {isOpen ? (
-          <>
-            <ModalBackdrop>
-              <ModalView>
-                <div>회원 정보 수정</div>
-                <div>
-                  <img src={imgUrl} />
-                  <label className="input-file-btn" for="input-file">
-                    <div className="icon-text">수정</div>
-                  </label>
-                  <input
-                    type="file"
-                    id="input-file"
-                    accept="image/*"
-                    onChange={handleChangeFile}
-                  />
-                </div>
-                <input
-                  type="text"
-                  placeholder="name"
-                  value={inputUsername}
-                  onChange={handleInputUsername}
-                />
-                <input
-                  type="text"
-                  placeholder="email"
-                  value={inputEmail}
-                  onChange={handleInputEmail}
-                />
-                <input
-                  type="password"
-                  placeholder="password"
-                  value={inputPassword}
-                  onChange={handleInputPassword}
-                />
-                <div className="modal-btn">
-                  <div className="btn cancel" onClick={closeModalHandler}>
-                    취소
-                  </div>
-                  <div className="btn comfirm" onClick={handleEdit}>
-                    수정
-                  </div>
-                </div>
-              </ModalView>
-            </ModalBackdrop>
-          </>
-        ) : null}
-      </ModalContainer>
       <Body>
         <Header>
           <Logo>
@@ -453,6 +254,8 @@ const Mypage = () => {
             <Menu>
               <MenuButton onClick={ToMainPage}>로그아웃</MenuButton>
               <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
+              <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
+              <MenuButton>회원정보수정</MenuButton>
             </Menu>
           </SideBar>
         </Header>
@@ -461,32 +264,20 @@ const Mypage = () => {
             <ul>
               <li>
                 <img src="/images/reading.jpg" />
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleChangeFile}
-                />
               </li>
               <li>
                 <Menu>
-                  <div>+++++++여기에 로그인 프로필++++++++</div>
-
-                  <MenuButton onClick={openModalHandler}>
-                    회원정보수정
-                  </MenuButton>
+                  <div>userInfo</div>
                 </Menu>
               </li>
             </ul>
           </ProfileImages>
         </Profile>
         <SideBar>
-          <Menu>
-            <div>
-              <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
-            </div>
-          </Menu>
+          <Menu></Menu>
         </SideBar>
         <ImagesContainer>
+          {/* ul 태그 밑에 서버 이미지파일 넣기, 넣을 때 map활용하기 (key도 꼭 넣기!), key는 뭐로할까? */}
           <ul>
             <li>
               <img src="/images/reading.jpg" />
@@ -519,3 +310,14 @@ const Mypage = () => {
 };
 
 export default Mypage;
+
+// export const Logo = styled.div`
+//   > img {
+//     width: 200px;
+//     height: 200px;
+//     margin-left: 20px;
+//     cursor: pointer;
+//   }
+// `;
+
+// const Mypage = () => {};
