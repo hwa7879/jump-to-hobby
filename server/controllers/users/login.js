@@ -1,4 +1,4 @@
-const { users } = require("../../models");
+const { user } = require("../../models");
 const {
   generateAccessToken,
   generateRefreshToken,
@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
       .json({ message: "이메일이나 비밀번호를 확인해주세요." });
   }
 
-  const loginUser = await users.findOne({ where: { email, password } });
+  const loginUser = await user.findOne({ where: { email, password } });
   if (!loginUser) {
     return res.status(404).json({ message: "일치하는 유저가 없습니다." });
   }
