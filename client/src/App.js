@@ -52,7 +52,7 @@ export default function App() {
           <Route path="/login">
             <Login
               isLogin={isLogin}
-              handleResponseSuccess={handleResponseSuccess}
+              // handleResponseSuccess={handleResponseSuccess}
             />
           </Route>
           <Route path="/signup">

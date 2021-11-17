@@ -4,7 +4,15 @@ import styled from "styled-components";
 import axios from "axios";
 
 // 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯.
-export const Body = styled.div``;
+
+export const Body = styled.div`
+  background-color: #f2ead3;
+  background-image: linear-gradient(rgb(242, 234, 211), rgb(242, 234, 211));
+`;
+
+export const ModalContainer = styled.div`
+  position: relative;
+`;
 
 export const Header = styled.div`
   display: flex;
@@ -22,9 +30,10 @@ export const Logo = styled.div`
 
 export const SideBar = styled.div`
   display: flex;
+
   justify-content: right;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 500px;
   margin-right: 50px;
   .search-box {
     width: 200px;
@@ -68,15 +77,16 @@ export const MenuButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: #f49c1f;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: white;
   width: 120px;
   height: 40px;
   border-style: none;
-  margin-top: 10px;
+  margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s;
   margin-right: 0.5rem;
+  margin-left: 0.5rem;
   border-radius: 10px;
   background-color: #f49c1f;
 
@@ -88,7 +98,7 @@ export const MenuButton = styled.button`
 
 export const Profile = styled.div`
   display: flex;
-  margin: 60px 30px;
+  margin: 30px 500px;
 `;
 
 export const SearchBar = styled.div`
@@ -185,10 +195,11 @@ export const Inputbox = styled.div`
 const Input = styled.input`
   font-size: 1rem;
   width: 150px;
-  height: 70px;
+  height: 50px;
   padding-left: 5px;
   color: ${(props) => props.inputColor || "red"};
   background: papayawhip;
+
   /* display: flex;s
   padding: 0.5em;
   margin: 0.5em;
@@ -206,6 +217,7 @@ export const ProfileView = styled.div`
   flex-direction: column;
   width: 50%;
   height: 100vh;
+
   /* border: 1px; */
   /* float: right; */
 
@@ -268,14 +280,15 @@ export default function Login() {
     }
     axios
       .post(
-        "http://localhost:80/login ",
+        "http://localhost:80/login",
         {
           inputEmail,
           inputPassword,
         },
         { "Content-Type": "application/json", withCredentials: true }
       )
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         history.push("/");
       });
   };
@@ -288,50 +301,52 @@ export default function Login() {
   };
   return (
     <>
-      <Body>
-        <Header>
-          <Logo>
-            <img src="/images/logo.png" onClick={ToMainPage} />
-          </Logo>
-          <SideBar></SideBar>
-        </Header>
-        <Profile>
-          <ProfileImages>
-            <ul>
-              <li></li>
-              <li>
-                <Menu>
-                  <div>
-                    <Input
-                      placeholder="email"
-                      type="text"
-                      inputColor="black"
-                      value={inputEmail}
-                      onChange={handleChangeEmail}
-                    />
-                    <br />
-                    <Input
-                      placeholder="password"
-                      type="password"
-                      inputColor="black"
-                      value={inputPassword}
-                      onChange={handleChangePassword}
-                    />
-                    <br />
-                  </div>
+      <ModalContainer>
+        <Body>
+          <Header>
+            <Logo>
+              <img src="/images/logo.png" onClick={ToMainPage} />
+            </Logo>
+            <SideBar></SideBar>
+          </Header>
+          <Profile>
+            <ProfileImages>
+              <ul>
+                <li></li>
+                <li>
+                  <Menu>
+                    <div>
+                      <Input
+                        placeholder="email"
+                        type="text"
+                        inputColor="black"
+                        value={inputEmail}
+                        onChange={handleChangeEmail}
+                      />
+                      <br />
+                      <Input
+                        placeholder="password"
+                        type="password"
+                        inputColor="black"
+                        value={inputPassword}
+                        onChange={handleChangePassword}
+                      />
+                      <br />
+                    </div>
 
-                  <MenuButton onClick={handleLogin}>Login</MenuButton>
-                </Menu>
-              </li>
-            </ul>
-          </ProfileImages>
-        </Profile>
-        <SideBar>
-          <Menu>
-            <div></div>
-          </Menu>
-        </SideBar>
-      </Body>
+                    <MenuButton onClick={handleLogin}>Login</MenuButton>
+                  </Menu>
+                </li>
+              </ul>
+            </ProfileImages>
+          </Profile>
+          <SideBar>
+            <Menu>
+              <div></div>
+            </Menu>
+          </SideBar>
+        </Body>
+      </ModalContainer>
     </>
   );
 }
