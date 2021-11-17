@@ -1,16 +1,25 @@
-module.exports = (req, res) => {
-  if (req.session) {
-    req.session.destroy();
-    res.status(200).send({ message: "successfully signed out!" });
-  } else {
-    res.status(400).send({ message: "you're currently not logined" });
+const { users } = require("../../models");
+const { verifyAccessToken } = require("../tokenFunctions");
+
+module.exports = async (req, res) => {
+  const token = verifyAccessToken(req);
+
+  if (!token) {
+    return res.status(400).json({
+      data: null,
+      message: "you are currently not logined",
+    });
   }
+
+  if (token === "err") {
+    return res.status(500).json({
+      data: null,
+      message: "Sever Error",
+    });
+  }
+
+  res.status(205).json({
+    data: null,
+    message: "Successfully signed out!",
+  });
 };
-
-// const { accessToken } = req.body;
-
-// if(!accessToken) {
-//     res.status(400).send('bad request')
-// } else {
-//     res.status(200).send('logout success')
-// }
