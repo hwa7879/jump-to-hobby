@@ -130,6 +130,8 @@ export const MenuButton = styled.button`
   border-style: none;
   cursor: pointer;
   transition: all 0.3s;
+  margin-right: 0.5rem;
+  border-radius: 25px;
 
   :hover {
     background-color: black;
@@ -285,9 +287,9 @@ const Imagespage = () => {
     history.push("/upload");
   };
 
-  // 로그아웃 DELETE
+  // 로그아웃 POST
   const handleLogout = () => {
-    axios.delete("http://jump-to-hobby/users/logout").then((res) => {
+    axios.post("http://localhost:80/logout").then((res) => {
       // setUserinfo(null);
       // setIsLogin(false);
       history.push("/");
@@ -332,7 +334,7 @@ const Imagespage = () => {
   // useEffect(() => {
   //   axios
   //     .post(
-  //       "http://jump-to-hobby/users/info",
+  //       "http://localhost:80/userInfo",
   //       { username, email },
   //       {
   //         headers: { "Content-Type": "application/json" },
