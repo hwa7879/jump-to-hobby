@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 // 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯
+
 export const Body = styled.div`
   background-color: #f2ead3;
 `;
@@ -275,7 +276,7 @@ export const Icon = styled.div`
   }
 `;
 
-const Mypage = () => {
+function Mypage({ loginInfo }) {
   const [imgUrl, setImgUrl] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [inputUsername, setInputUsername] = useState("");
@@ -283,6 +284,9 @@ const Mypage = () => {
   const [inputPassword, setInputPassword] = useState("");
 
   const history = useHistory();
+
+  const { username, email, users_img } = loginInfo;
+  //username, email, users_img
 
   const openModalHandler = (e) => {
     if (isOpen) {
@@ -440,11 +444,12 @@ const Mypage = () => {
           <ProfileImages>
             <ul>
               <li>
-                <img src="/images/reading.jpg" />
+                <img src={users_img} />
               </li>
               <li>
                 <Menu>
-                  <div>userInfo</div>
+                  <div>{username}</div>
+                  <div>{email}</div>
                 </Menu>
               </li>
             </ul>
@@ -484,6 +489,6 @@ const Mypage = () => {
       </Body>
     </>
   );
-};
+}
 
 export default Mypage;
