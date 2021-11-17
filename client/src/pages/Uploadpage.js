@@ -169,9 +169,9 @@ export const Icon = styled.div`
 
 const Uploadpage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [imgUrl, setImgUrl] = useState(""); // img src 값.
-  const [inputContent, setInputContent] = useState("");
-  const [inputHobby, setInputHobby] = useState("");
+  const [img_url, setImgUrl] = useState(""); // img src 값.
+  const [content, setInputContent] = useState("");
+  const [hobby, setInputHobby] = useState("");
   const history = useHistory();
 
   const openModalHandler = () => {
@@ -208,7 +208,7 @@ const Uploadpage = () => {
   };
 
   const handleUpload = () => {
-    if (imgUrl === "" || inputContent === "" || inputHobby === "") {
+    if (img_url === "" || content === "" || hobby === "") {
       alert("양식을 채워주세요!");
       return;
     }
@@ -218,13 +218,14 @@ const Uploadpage = () => {
       .post(
         "http://localhost:80/imageUpload",
         {
-          imgUrl,
-          inputHobby,
-          inputContent,
+          img_url,
+          content,
+          hobby,
         },
         { "Content-Type": "application/json", withCredentials: true }
       )
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         history.push("/images");
       });
   };
@@ -259,7 +260,7 @@ const Uploadpage = () => {
           <img src="/images/logo.png" onClick={ToMainPage} />
         </Logo>
         <UploadWrapper>
-          <img src={imgUrl} />
+          <img src={img_url} />
           <div className="img-btn-container">
             <Button>
               <Icon>
@@ -282,7 +283,7 @@ const Uploadpage = () => {
               className="input-hobby"
               placeholder="취미"
               onChange={handleChangeHobbyContent}
-              value={inputHobby}
+              value={hobby}
             />
             {/* 취미 적는 칸 기능 구현하기! */}
           </div>
@@ -290,7 +291,7 @@ const Uploadpage = () => {
             rows="10"
             cols="50"
             className="content"
-            value={inputContent}
+            value={content}
             onChange={handleChangeContent}
           />
           <Button>
