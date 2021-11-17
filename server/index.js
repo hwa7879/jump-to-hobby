@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 
 const controllers = require("./controllers");
 
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 80;
 
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -22,13 +24,17 @@ app.use(
 app.post("/login", controllers.users.login);
 app.post("/logout", controllers.users.logout);
 app.post("/signup", controllers.users.signup);
-app.post("/userInfo", controllers.users.userInfo);
+app.get("/userInfo", controllers.users.userInfo);
 
-app.post("/imageInfo", controllers.images.imageInfo);
+app.get("/imageInfo", controllers.images.imageInfo);
 app.post("/imageEdit", controllers.images.imageEdit);
 app.post("/imageUpload", controllers.images.imageUpload);
 app.post("/imageDelete", controllers.images.imageDelete);
-app.post("/imageList", controllers.images.imageList);
+app.get("/imageList", controllers.images.imageList);
+
+app.get("/", (req, res) => {
+  res.status(201).send("Hello World");
+});
 
 const server = app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);
