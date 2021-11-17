@@ -9,21 +9,44 @@ import Uploadpage from "./pages/Uploadpage";
 import { useHistory } from "react-router-dom";
 
 import "./App.css";
+import axios from "axios";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false); // 로그인한 사람만 마이페이지로 갈 수 있게함.
   const [accessToken, setAccessToken] = useState("");
+  const [loginInfo, setLoginInfo] = useState("");
 
   // const history = useHistory();
 
-  // const isAuthenticated = (res) => {
-  //   setAccessToken(res.data); // accessToken 저장해서 마이페이지에 전달하기
-  //   setIsLogin(true);
-  //   history.push("/");
-  // };
-  // const handleResponseSuccess = (res) => {
-  //   isAuthenticated(res);
-  // };
+  const isAuthenticated = () => {
+    // accessToken 저장해서 마이페이지에 전달하기
+    // setIsLogin(true);
+    // history.push("/");
+    // console.log("sdfdsfdsf");
+    // alert(accessToken);
+
+    axios
+      .get("http://localhost:80/userInfo", {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+          //authorization로 토큰 보냄
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        setLoginInfo(res.data.data.userInfo);
+      });
+  };
+
+  const handleResponseSuccess = (res) => {
+    setAccessToken(res);
+    isAuthenticated();
+    //console.log(accessToken);
+
+    //console.log(res);
+    //history.push("/mypage");
+  };
 
   return (
     <>
@@ -39,7 +62,7 @@ export default function App() {
             <Signup />
           </Route>
           <Route exact path="/mypage">
-            <Mypage accessToken={accessToken} />
+            <Mypage loginInfo={loginInfo} />
           </Route>
           <Route exact path="/images">
             <Imagespage />
