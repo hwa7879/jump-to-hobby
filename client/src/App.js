@@ -16,7 +16,7 @@ export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [loginInfo, setLoginInfo] = useState("");
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const isAuthenticated = () => {
     // accessToken 저장해서 마이페이지에 전달하기
@@ -56,7 +56,7 @@ export default function App() {
             <Mainpage />
           </Route>
           <Route exact path="/login">
-            <Login handleResponseSuccess={handleResponseSuccess} />
+            <Login />
           </Route>
           <Route exact path="/signup">
             <Signup />

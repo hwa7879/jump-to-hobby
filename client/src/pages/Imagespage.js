@@ -291,7 +291,7 @@ const Imagespage = () => {
   const handleLogout = () => {
     axios.post("http://localhost:80/logout").then((res) => {
       // setUserinfo(null);
-      // setIsLogin(false);
+      alert("로그아웃 되었습니다.");
       history.push("/");
     });
   };
@@ -412,7 +412,7 @@ const Imagespage = () => {
           {/* ul 태그 밑에 서버 이미지파일 넣기, 넣을 때 map활용하기 (key도 꼭 넣기!), key는 뭐로할까? */}
           <ul>
             {imageData.map((photo) => (
-              <li key={photo.img_id} onClick={openModalHandler}>
+              <li key={photo.posts_id} onClick={openModalHandler}>
                 <img src={photo.img_url} />
               </li>
             ))}

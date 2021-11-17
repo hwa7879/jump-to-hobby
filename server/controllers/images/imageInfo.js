@@ -1,7 +1,7 @@
 const { posts_img } = require("../../models");
 module.exports = async (req, res) => {
   //const id = { id } =req.params
-  const img = await posts_img.findOne({
+  const imageInfo = await posts_img.findOne({
     where: { id, img_url },
   });
   if (!imageInfo) {
