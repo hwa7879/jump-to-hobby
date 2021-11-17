@@ -6,6 +6,7 @@ module.exports = async (req, res) => {
     return res.status(400).send({ message: "회원정보를 모두 입력해주세요." });
   }
 
+  // 특정 요소를 검색하거나, 존재하지 않으면 새로 생성 (findOrCreate)
   const [createUser, created] = await users.findOrCreate({
     where: { email },
     defaults: { username, email, password },
