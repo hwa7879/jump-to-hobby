@@ -285,9 +285,9 @@ const Imagespage = () => {
     history.push("/upload");
   };
 
-  // 로그아웃 DELETE
+  // 로그아웃 POST
   const handleLogout = () => {
-    axios.delete("http://jump-to-hobby/users/logout").then((res) => {
+    axios.post("http://localhost:80/logout").then((res) => {
       // setUserinfo(null);
       // setIsLogin(false);
       history.push("/");
@@ -311,7 +311,7 @@ const Imagespage = () => {
   // 이미지 모두 불러오기 GET
   // 컴포넌트가 처음 생성되거나, props가 업데이트되거나, 상태(state)가 업데이트될 때
   useEffect(() => {
-    axios.get("http://jump-to-hobby/images/info").then((res) => {
+    axios.get("http://localhost:80/imageInfo").then((res) => {
       console.log(res);
       // res가 어떻게 오는지 보고 useState를 이용해 이미지들을 관리해야할 듯.
     });
@@ -332,7 +332,7 @@ const Imagespage = () => {
   // useEffect(() => {
   //   axios
   //     .post(
-  //       "http://jump-to-hobby/users/info",
+  //       "http://localhost:80/userInfo",
   //       { username, email },
   //       {
   //         headers: { "Content-Type": "application/json" },
