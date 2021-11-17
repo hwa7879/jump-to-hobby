@@ -243,7 +243,7 @@ export default function Signup() {
     }
 
     axios
-      .post("http://localhost:80/users/signup", {
+      .post("http://localhost:80/signup", {
         inputEmail,
         inputPassword,
         inputUsername,

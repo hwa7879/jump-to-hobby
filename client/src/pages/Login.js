@@ -268,7 +268,7 @@ export default function Login() {
     }
     axios
       .post(
-        "http://localhost:80/users/login ",
+        "http://localhost:80/login ",
         {
           inputEmail,
           inputPassword,

@@ -24,7 +24,7 @@ export default function App() {
   const history = useHistory();
   const isAuthenticated = () => {
     axios
-      .get("http://jump-to-hobby/users/info")
+      .get("http://localhost:80/userInfo")
       .then((res) => {
         setIsLogin(true);
         setUserinfo(res.data.data.userInfo);

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const { posts_imgs } = require("../../models");
-=======
-const { users, posts, posts_img } = require("../../models");
->>>>>>> dev
 
 module.exports = async (req, res) => {
   const { img_url, content, hobby } = req.body;
