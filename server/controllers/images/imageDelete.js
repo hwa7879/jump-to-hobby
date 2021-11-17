@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   const userImg = req.params.id;
 
   if (!userImg) {
-    return res.satus(404).send({ message: "Not found" });
+    return res.status(404).send({ message: "Not found" });
   } else {
     await posts_imgs.destroy({
       where: { id: userImg },
@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
 // const userImg = req.params.id;
 
 // if (!isAuthorized) {
-//   return res.satus(404).send({ message: "Not found" });
+//   return res.status(404).send({ message: "Not found" });
 // } else {
 //   await posts_imgs.destroy({
 //     where: { id: userImg },

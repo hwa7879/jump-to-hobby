@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-// 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯
+// 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯.
 export const Body = styled.div``;
 
 export const Header = styled.div`

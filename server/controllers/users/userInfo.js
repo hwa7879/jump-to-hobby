@@ -1,8 +1,8 @@
 const { users } = require("../../models");
-const { isAuthorized } = require("../tokenFunctions");
+const { verifyAccessToken } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
-  const userInfo = isAuthorized(req);
+  const userInfo = verifyAccessToken(req);
   if (!userInfo) {
     return res.status(403).send({ message: "존재하지 않는 유저입니다." });
   }

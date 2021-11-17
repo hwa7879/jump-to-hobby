@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     },
   });
   if (!userImg) {
-    return res.status(404).sned({ message: "Not found" });
+    return res.status(404).send({ message: "Not found" });
   } else {
     const img = await posts_imgs.findOne({
       where: {
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
 //     },
 //   });
 //   if (!userImg) {
-//     return res.status(403).sned({ message: "존재하지 않는 유저입니다" });
+//     return res.status(403).send({ message: "존재하지 않는 유저입니다" });
 //   }
 //   await users.findOne({
 //     where: { username },
