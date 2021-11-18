@@ -16,24 +16,21 @@ module.exports = {
     });
   },
 
-  sendAccessToken: (res, access_token) => {
-    console.log("여기 샌드어세스토큰");
-    return res.cookie("jwt", access_token);
+  sendAccessToken: (res, accessToken) => {
+    // console.log("여기 샌드어세스토큰");
+    res.json({ data: { accessToken }, message: "ok" });
   },
 
   verifyAccessToken: (req) => {
-    console.log("여기 버리파이인증");
-    // const authorization = req.headers["cookie"];
-    // console.log(authorization);
+    // console.log("여기 버리파이인증");
+    // console.log(req.headers);
+    const authorization = req.headers["cookie"];
+    // console.log(authorization.slice(4));
+
+    let token = authorization.slice(4);
 
     try {
-      if (!req.cookies["jwt"]) {
-        return null;
-      }
-      // const token = authorization.split(" ")[1];
-      const token = req.cookies["jwt"];
-      const decoded = verify(token, process.env.ACCESS_SECRET);
-      return decoded;
+      return verify(token, process.env.ACCESS_SECRET);
     } catch (err) {
       return null;
     }
