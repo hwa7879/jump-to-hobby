@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const Body = styled.div`
   background-color: #f2ead3;
-  background-image: linear-gradient(rgb(242, 234, 211), rgb(242, 234, 211));
+  height: 100vh;
 `;
 
 export const ModalContainer = styled.div`
@@ -33,7 +33,7 @@ export const SideBar = styled.div`
 
   justify-content: right;
   flex-direction: column;
-  margin-top: 500px;
+  margin-top: 200px;
   margin-right: 50px;
   .search-box {
     width: 200px;
@@ -77,11 +77,11 @@ export const MenuButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: #f49c1f;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: white;
-  width: 120px;
-  height: 40px;
-  border-style: none;
+  /* width: 300px; */
+  height: 60px;
+  /* border-style: none; */
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s;
@@ -98,7 +98,7 @@ export const MenuButton = styled.button`
 
 export const Profile = styled.div`
   display: flex;
-  margin: 30px 500px;
+  margin: 100px 500px;
 `;
 
 export const SearchBar = styled.div`
@@ -193,49 +193,20 @@ export const Inputbox = styled.div`
 `;
 
 const Input = styled.input`
-  font-size: 1rem;
-  width: 150px;
+  font-size: 1.2rem;
+  width: 350px;
   height: 50px;
   padding-left: 5px;
   color: ${(props) => props.inputColor || "red"};
   background: papayawhip;
 
-  /* display: flex;s
+  /* display: flex; */
   padding: 0.5em;
   margin: 0.5em;
-  
+
   background: papayawhip;
-  border: none;
-  border-radius: 3px; */
-`;
-
-export const ProfileView = styled.div`
-  /* background-color: black; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 50%;
-  height: 100vh;
-
-  /* border: 1px; */
-  /* float: right; */
-
-  /* width: 500px;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 50px;
-  line-height: 200px;
-  height: 200px;
-  border: 3px; */
-
-  /* ul {
-    border: 2px solid #87c1ff;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 5px;
-    list-style: none;
-  } */
+  border-color: #ffff;
+  border-radius: 10px;
 `;
 
 export const Button = styled.div`
@@ -246,8 +217,8 @@ export const Button = styled.div`
   .upload-btn {
     margin: 10px;
     cursor: pointer;
-    width: 100px;
-    height: 50px;
+    width: 80px;
+    height: 30px;
     background-color: blue;
     color: white;
     display: flex;
