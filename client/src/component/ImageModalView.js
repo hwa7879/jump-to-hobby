@@ -13,6 +13,11 @@ export const Image = styled.div`
     width: 500px;
     height: 650px;
     background-color: white;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .side-wrapper div {
+    margin: 30px;
   }
 `;
 
