@@ -1,8 +1,8 @@
-const { posts_imgs } = require("../../models");
+const { posts_img } = require("../../models");
 
 module.exports = async (req, res) => {
   const { img_url, content } = req.body;
-  const editImage = await posts_imgs.update(
+  const editImage = await posts_img.update(
     {
       img_url,
       content,

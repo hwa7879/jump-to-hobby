@@ -1,4 +1,4 @@
-const { posts_imgs, posts } = require("../../models");
+const { posts_img, posts } = require("../../models");
 //const { isAuthorized } = require("../tokenFunctions");
 module.exports = async (req, res) => {
   const { username } = req.body;
@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   if (!userImg) {
     return res.status(404).send({ message: "Not found" });
   } else {
-    const img = await posts_imgs.findOne({
+    const img = await posts_img.findOne({
       where: {
         img_url,
       },
