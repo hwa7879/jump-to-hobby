@@ -259,11 +259,7 @@ export default function Login({ handleResponseSuccess }) {
         { "Content-Type": "application/json", withCredentials: true }
       )
       .then((res) => {
-        // console.log(res.data.data.access_token);
-        // console.log(res);
-        // handleResponseSuccess(res.data.data.access_token);
-        console.log(res);
-        handleResponseSuccess(res);
+        handleResponseSuccess(res.data.data.accessToken);
         history.push("/mypage");
       });
   };

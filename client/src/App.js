@@ -16,13 +16,8 @@ export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [loginInfo, setLoginInfo] = useState("");
 
-  // const history = useHistory();
-
   const isAuthenticated = () => {
     // accessToken 저장해서 마이페이지에 전달하기
-    // setIsLogin(true);
-    // history.push("/");
-    // console.log("sdfdsfdsf");
     // alert(accessToken);
 
     axios
@@ -35,20 +30,14 @@ export default function App() {
         withCredentials: true,
       })
       .then((res) => {
-        // console.log("aaaa");
-        console.log(res);
-
-        // setLoginInfo(res.data.data.userInfo);
+        // console.log("여기 클라이언트 유저인포받는 부분");
+        setLoginInfo(res.data.data.userInfo);
       });
   };
 
   const handleResponseSuccess = (res) => {
     setAccessToken(res);
     isAuthenticated();
-    //console.log(accessToken);
-
-    // console.log(res);
-    //history.push("/mypage");
   };
 
   return (

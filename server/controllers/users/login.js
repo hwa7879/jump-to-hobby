@@ -10,16 +10,16 @@ module.exports = async (req, res) => {
       where: { email, password },
     });
 
-    // 전달받은 유저 정보가 잘못된 경우
     if (!userInfo) {
       return res.status(404).send("invalid user");
     } else {
-      // DB의 정보와 일치하는 유저 정보를 전달받은 경우
-      // 조회한 유저 정보로 JWT 토큰 생성(generateAccessToken)
+      // 데이터에 비밀번호 있는 거 삭제
+      delete userInfo.dataValues.password;
       const accessToken = generateAccessToken(userInfo.dataValues);
-      // 응답 헤더 쿠키에 토큰 담기(sendAccessToken)
+      // console.log("여기 어세스 토큰");
+      // console.log(accessToken);
+      res.cookie("jwt", accessToken);
       sendAccessToken(res, accessToken);
-      return res.status(200).json({ message: "ok" });
     }
   } catch (err) {
     console.error;

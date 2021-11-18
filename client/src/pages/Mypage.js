@@ -138,6 +138,16 @@ export const SideBar = styled.div`
 export const Menu = styled.div`
   display: flex;
   justify-content: right;
+
+  .userinfo-content {
+    display: flex;
+
+    flex-direction: column;
+    font-size: 2rem;
+  }
+  .userinfo-content div {
+    margin: 10px;
+  }
 `;
 
 export const MenuButton = styled.button`
@@ -453,12 +463,14 @@ function Mypage({ loginInfo }) {
           <ProfileImages>
             <ul>
               <li>
-                <img src="/images/coffie.jpg" />
+                <img src={users_img} />
               </li>
               <li>
                 <Menu>
-                  <div>{username}</div>
-                  <div>{email}</div>
+                  <div className="userinfo-content">
+                    <div>{username}</div>
+                    <div>{email}</div>
+                  </div>
                 </Menu>
               </li>
             </ul>
