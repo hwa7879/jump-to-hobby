@@ -31,6 +31,7 @@ export const ModalView = styled.div`
   height: 200px;
   z-index: 4;
   border: 1px solid blue;
+
   .modal-btn {
     display: flex;
     margin-top: 20px;
@@ -335,9 +336,9 @@ export default function Mainpage() {
 
       <Body>
         <Button>
-          <MenuButton onClick={ToMyPage}>마이페이지</MenuButton>
           <MenuButton onClick={ToLogin}>로그인</MenuButton>
           <MenuButton onClick={ToSignup}>회원가입</MenuButton>
+          <MenuButton onClick={ToMyPage}>마이페이지</MenuButton>
           <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
           <MenuButton onClick={ToUploadPage}>업로드</MenuButton>
         </Button>

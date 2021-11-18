@@ -56,7 +56,7 @@ export default function App() {
             <Mainpage />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <Login handleResponseSuccess={handleResponseSuccess} />
           </Route>
           <Route exact path="/signup">
             <Signup />
