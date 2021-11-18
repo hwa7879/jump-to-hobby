@@ -144,6 +144,7 @@ export const Button = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  margin-right: 80px;
   .upload-btn {
     margin: 10px;
     cursor: pointer;

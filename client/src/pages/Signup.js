@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-// 로그아웃 부분은 App.js에서 props로 받아서 써야 할 듯.
 export const Body = styled.div`
   background-color: #f2ead3;
   height: 100vh;
@@ -78,15 +77,15 @@ export const MenuButton = styled.button`
   background-color: #f49c1f;
   font-size: 1.5rem;
   color: white;
-  /* width: 300px; */
+  width: 150px;
   height: 60px;
   /* border-style: none; */
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  border-radius: 10px;
+  margin-right: 1rem;
+  margin-left: 13rem;
+  border-radius: 13px;
   background-color: #f49c1f;
 
   :hover {
@@ -97,7 +96,38 @@ export const MenuButton = styled.button`
 
 export const Profile = styled.div`
   display: flex;
-  margin: 100px 500px;
+  margin: 10px 300px;
+`;
+export const ProfileView = styled.div`
+  /* background-color: black; */
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 70%;
+  /* height: 100vh; */
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  /* border: 1px; */
+  /* float: right; */
+
+  /* width: 500px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 50px;
+  line-height: 200px;
+  height: 200px;
+  border: 100px; */
+
+  .title {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #363535;
+  }
+  .title-content {
+    font-size: 1.5rem;
+    color: #5e5d5d;
+  }
 `;
 
 export const SearchBar = styled.div`
@@ -136,7 +166,7 @@ export const ImagesContainer = styled.div`
 export const ProfileImages = styled.div`
   margin-top: 30px;
   ul {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     list-style: none;
@@ -208,35 +238,6 @@ const Input = styled.input`
   border-radius: 10px;
 `;
 
-export const ProfileView = styled.div`
-  /* background-color: black; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 50%;
-  height: 100vh;
-
-  /* border: 1px; */
-  /* float: right; */
-
-  /* width: 500px;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 50px;
-  line-height: 200px;
-  height: 200px;
-  border: 3px; */
-
-  /* ul {
-    border: 2px solid #87c1ff;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 5px;
-    list-style: none;
-  } */
-`;
-
 export const Button = styled.div`
   position: absolute;
   display: flex;
@@ -297,6 +298,27 @@ export default function Signup() {
   const ToMainPage = () => {
     history.push("/");
   };
+
+  //유효성 검사
+  // function userId(id) {
+  //   const idReg = /^[a-zA-Z0-9]{6,12}$/;
+  //   if (idReg.test(id)) {
+  //     return true;
+  //   } else {
+  //     alert("아이디는 영문, 숫자 조합의 최소 6자리 이상이어야 합니다.");
+  //     return false;
+  //   }
+  // }
+  // function userPw(pw) {
+  //   const userPw = /^[a-zA-Z0-9]{6,12}$/;
+  //   if (userPw.test(pw)) {
+  //     return true;
+  //   } else {
+  //     alert("패스워드는 영문, 숫자 조합의 최소 6자리 이상이어야 합니다.");
+  //     return false;
+  //   }
+  // }
+
   return (
     <>
       <Body>
@@ -309,7 +331,14 @@ export default function Signup() {
         <Profile>
           <ProfileImages>
             <ul>
-              <li></li>
+              <li>
+                <ProfileView>
+                  <div className="title">Signup</div>
+                  <div className="title-content">
+                    You can use more services by registering as a member.
+                  </div>
+                </ProfileView>
+              </li>
               <li>
                 <Menu>
                   <div>
