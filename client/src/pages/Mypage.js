@@ -35,7 +35,7 @@ export const ModalView = styled.div`
   width: 500px;
   height: 700px;
   z-index: 2;
-  border: 1px solid blue;
+  border: 3px solid #f49c1f;
   img {
     margin-top: 30px;
     width: 200px;
@@ -138,16 +138,6 @@ export const SideBar = styled.div`
 export const Menu = styled.div`
   display: flex;
   justify-content: right;
-
-  .userinfo-content {
-    display: flex;
-
-    flex-direction: column;
-    font-size: 2rem;
-  }
-  .userinfo-content div {
-    margin: 10px;
-  }
 `;
 
 export const MenuButton = styled.button`
@@ -164,7 +154,7 @@ export const MenuButton = styled.button`
   transition: all 0.3s;
   margin-right: 0.5rem;
   border-radius: 25px;
-  margin-top: 50px;
+  margin-top: 30px;
   background-color: #f49c1f;
 
   :hover {
@@ -175,7 +165,33 @@ export const MenuButton = styled.button`
 
 export const Profile = styled.div`
   display: flex;
-  margin: 60px 30px;
+  justify-content: end;
+  margin-right: 50px;
+
+  .userinfo {
+    display: flex;
+    width: 550px;
+    height: 250px;
+    border: 6px solid #f49c1f;
+    border-radius: 40px;
+  }
+
+  img {
+    margin: 30px;
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
+  }
+  .userinfo-content {
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .userinfo-content div {
+    margin: 10px;
+  }
 `;
 
 export const SearchBar = styled.div`
@@ -185,6 +201,7 @@ export const SearchBar = styled.div`
 
 export const ImagesContainer = styled.div`
   margin-top: 80px;
+  margin-left: 50px;
   ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -252,7 +269,7 @@ export const TopButton = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  background-color: blue;
+  background-color: #f49c1f;
   color: white;
   transition: all 0.3s;
 
@@ -455,26 +472,19 @@ function Mypage({ loginInfo }) {
               <MenuButton onClick={handleLogout}>로그아웃</MenuButton>
               <MenuButton onClick={ToImagePage}>이미지페이지</MenuButton>
               <MenuButton onClick={ToUploadPage}>업로드게시판</MenuButton>
-              <MenuButton onClick={openModalHandler}>회원정보수정</MenuButton>
             </Menu>
           </SideBar>
         </Header>
         <Profile>
-          <ProfileImages>
-            <ul>
-              <li>
-                <img src={users_img} />
-              </li>
-              <li>
-                <Menu>
-                  <div className="userinfo-content">
-                    <div>{username}</div>
-                    <div>{email}</div>
-                  </div>
-                </Menu>
-              </li>
-            </ul>
-          </ProfileImages>
+          {/* {users_img}  */}
+          <div className="userinfo">
+            <img src="/images/coffie.jpg" />
+            <div className="userinfo-content">
+              <div>{username}</div>
+              <div>{email}</div>
+              <MenuButton onClick={openModalHandler}>회원정보수정</MenuButton>
+            </div>
+          </div>
         </Profile>
         <SideBar>
           <Menu></Menu>

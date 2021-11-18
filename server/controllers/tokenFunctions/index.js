@@ -26,7 +26,9 @@ module.exports = {
     // console.log(req.headers);
     const authorization = req.headers["cookie"];
     // console.log(authorization.slice(4));
-
+    if (!authorization) {
+      return null;
+    }
     let token = authorization.slice(4);
 
     try {
