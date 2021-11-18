@@ -17,17 +17,23 @@ module.exports = {
   },
 
   sendAccessToken: (res, access_token) => {
-    return res.status(200).send({ data: { access_token } });
+    console.log("여기 샌드어세스토큰");
+    return res.cookie("jwt", access_token);
   },
 
   verifyAccessToken: (req) => {
-    const authorization = req.headers["authorization"];
-    if (!authorization) {
-      return null;
-    }
-    const token = authorization.split(" ")[1];
+    console.log("여기 버리파이인증");
+    // const authorization = req.headers["cookie"];
+    // console.log(authorization);
+
     try {
-      return verify(token, process.env.ACCESS_SECRET);
+      if (!req.cookies["jwt"]) {
+        return null;
+      }
+      // const token = authorization.split(" ")[1];
+      const token = req.cookies["jwt"];
+      const decoded = verify(token, process.env.ACCESS_SECRET);
+      return decoded;
     } catch (err) {
       return null;
     }

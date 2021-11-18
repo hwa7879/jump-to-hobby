@@ -35,7 +35,10 @@ export default function App() {
         withCredentials: true,
       })
       .then((res) => {
-        setLoginInfo(res.data.data.userInfo);
+        // console.log("aaaa");
+        console.log(res);
+
+        // setLoginInfo(res.data.data.userInfo);
       });
   };
 
@@ -44,7 +47,7 @@ export default function App() {
     isAuthenticated();
     //console.log(accessToken);
 
-    //console.log(res);
+    // console.log(res);
     //history.push("/mypage");
   };
 

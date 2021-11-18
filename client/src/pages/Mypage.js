@@ -453,7 +453,7 @@ function Mypage({ loginInfo }) {
           <ProfileImages>
             <ul>
               <li>
-                <img src={users_img} />
+                <img src="/images/coffie.jpg" />
               </li>
               <li>
                 <Menu>

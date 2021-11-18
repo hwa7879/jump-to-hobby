@@ -28,11 +28,11 @@ app.post("/logout", controllers.users.logout);
 app.post("/signup", controllers.users.signup);
 app.get("/userInfo", controllers.users.userInfo);
 
-app.get("/imageInfo", controllers.images.imageInfo);
-app.post("/imageEdit", controllers.images.imageEdit);
-app.post("/imageUpload", controllers.images.imageUpload);
-app.post("/imageDelete", controllers.images.imageDelete);
-app.get("/imageList", controllers.images.imageList);
+// app.get("/imageInfo", controllers.images.imageInfo);
+// app.post("/imageEdit", controllers.images.imageEdit);
+// app.post("/imageUpload", controllers.images.imageUpload);
+// app.post("/imageDelete", controllers.images.imageDelete);
+// app.get("/imageList", controllers.images.imageList);
 
 app.get("/", (req, res) => {
   res.status(201).send("Hello World");
