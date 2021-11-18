@@ -260,8 +260,10 @@ export default function Login({ handleResponseSuccess }) {
       )
       .then((res) => {
         // console.log(res.data.data.access_token);
-
-        handleResponseSuccess(res.data.data.access_token);
+        // console.log(res);
+        // handleResponseSuccess(res.data.data.access_token);
+        console.log(res);
+        handleResponseSuccess(res);
         history.push("/mypage");
       });
   };
